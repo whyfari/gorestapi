@@ -5,15 +5,15 @@ import(
 	"log"
 	"net/http"
 	"math/rand"
-    "strconv"
+	"strconv"
 	"github.com/gorilla/mux"
 )
 
 //Book Struct (Model)
 type Book struct {
-	ID	string `json:"id"`
-	Isbn string `json:"isbn"`
-	Title string `json:"title"`
+	ID     string `json:"id"`
+	Isbn   string `json:"isbn"`
+	Title  string `json:"title"`
 	Author *Author `json:"author"`
 }
 
@@ -51,8 +51,6 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 	book.ID = strconv.Itoa(rand.Intn(100000000)) // Mock ID - not safe in production since a duplicate can be generated
 	books = append(books,book)
 	json.NewEncoder(w).Encode(book)
-
-    
 }
 
 func updateBook(w http.ResponseWriter, r *http.Request) {
@@ -62,9 +60,8 @@ func updateBook(w http.ResponseWriter, r *http.Request) {
 		if item.ID == params["id"] {
     		books = append(books[:index], books[index+1:]...)
         	var book Book
-        	_ = json.NewDecoder(r.Body).Decode(&book)
-			//book.ID = strconv.Itoa(rand.Intn(100000000)) // Mock ID - not safe in production since a duplicate can be generated
-			book.ID = params["id"]
+			_ = json.NewDecoder(r.Body).Decode(&book)
+			//book.ID = params["id"] // use the id decoded from the json param
         	books = append(books,book)
     		json.NewEncoder(w).Encode(book)
 		}
