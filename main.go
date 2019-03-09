@@ -111,7 +111,7 @@ func main() {
 			"author": {"firstname":"Jio", "lastname": "Dio"}
 		}
 	 // got back the new book created with a random id
-	* getBook: 'UPDATE', url: http://localhost:8000/api/books/2, Header: 'Content-type' : application/json // got back all books including the updated book 2
+	* updateBook: 'UPDATE', url: http://localhost:8000/api/books/2, Header: 'Content-type' : application/json // got back all books including the updated book 2
 	*
 	* {
     *  "isbn": "1112-2",
@@ -121,6 +121,7 @@ func main() {
     *     "lastname": "Doe"
     *   }
     * }
+	* deleteBook: 'DELETE', url: http://localhost:8000/api/books/2, Header: 'Content-type' : application/json // will delete book id 2 and return the rest
 	*/
 
 	log.Fatal(http.ListenAndServe(":8000", r))
