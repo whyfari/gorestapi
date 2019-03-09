@@ -63,7 +63,7 @@ func updateBook(w http.ResponseWriter, r *http.Request) {
 			books = append(books[:index], books[index+1:]...)
 			var book Book
 			_ = json.NewDecoder(r.Body).Decode(&book)
-			book.ID = params["id"] // id decoded from the json param will be ignored, uncomment to use it instead
+			book.ID = params["id"] // id decoded from the json param will be ignored, comment this line to use the id provided instead
 			books = append(books, book)
 			json.NewEncoder(w).Encode(book)
 			return
